@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NextWord AI — Tamil & English Next-Word Prediction
 
 A student open-ended deep learning experiment demonstrating next-word prediction with NLP and LSTM. Includes a Flask web interface, separate English/Tamil sample corpora, a training script, and a simple evaluation script.
@@ -66,3 +67,6 @@ This reports a top-3 hit rate over the included corpus. It is only a smoke test 
 
 ## Author
 Student Open-Ended Deep Learning Experiment
+=======
+# Nextword-Predictor
+>>>>>>> 60225de524ac5625276358338dca7e42f5977476
