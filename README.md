@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # NextWord AI — Tamil & English Next-Word Prediction
 
 A student open-ended deep learning experiment demonstrating next-word prediction with NLP and LSTM. Includes a Flask web interface, separate English/Tamil sample corpora, a training script, and a simple evaluation script.
@@ -51,22 +51,6 @@ python evaluate.py
 ```
 This reports a top-3 hit rate over the included corpus. It is only a smoke test because the tiny corpus is not an independent held-out test set. Do not report it as generalization accuracy.
 
-## Suggested open-ended experiment extensions
-- Compare LSTM with a simple n-gram baseline.
-- Measure top-1 and top-3 accuracy on a held-out dataset.
-- Compare English and Tamil results.
-- Plot training/validation loss and accuracy.
-- Try a larger licensed corpus and document its source.
-- Deploy through a production WSGI server after development.
 
-## Important notes
-- No pretrained model is bundled; train the models locally with `python train.py`.
-- `model/` contains metadata placeholders only until training succeeds.
-- The starter corpus is for demonstration and should not be described as a large dataset.
-- Never publish private or copyrighted training text without permission.
 
-## Author
-Student Open-Ended Deep Learning Experiment
-=======
-# Nextword-Predictor
->>>>>>> 60225de524ac5625276358338dca7e42f5977476
+
