@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neural Architecture Lab — NextWord AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header>
+    <a class="brand" href="/">
+      <div class="logo-icon">✨</div>
+      NextWord <span>AI</span>
+    </a>
+    <nav>
+      <a href="/">Predict</a>
+      <a href="/analytics">Analytics</a>
+      <a href="/lab" class="active">Neural Lab</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="hero-header" style="margin-bottom:32px;">
+      <div class="badge-tag">
+        <span class="dot"></span> Deep Learning Architecture Breakdown
+      </div>
+      <h1 class="hero-title">Neural Network <span>Lab</span></h1>
+      <p class="hero-subtitle">
+        Explore how sequence tokenization, dense word embeddings, recurrent LSTM memory cells, and Softmax probability distributions generate next words.
+      </p>
+    </div>
+
+    <!-- Step-by-Step Architecture Pipeline Visualization -->
+    <div class="architecture-diagram" style="margin-bottom:36px;">
+      <div class="arch-step">
+        <div class="arch-icon">1</div>
+        <strong style="display:block;font-size:0.95rem;margin-bottom:4px;">Tokenization</strong>
+        <span style="font-size:0.8rem;color:var(--text-subtle);">Text ➔ Word IDs</span>
+      </div>
+      <div class="arch-arrow">➔</div>
+
+      <div class="arch-step">
+        <div class="arch-icon">2</div>
+        <strong style="display:block;font-size:0.95rem;margin-bottom:4px;">Embedding</strong>
+        <span style="font-size:0.8rem;color:var(--text-subtle);">128D Dense Vector</span>
+      </div>
+      <div class="arch-arrow">➔</div>
+
+      <div class="arch-step">
+        <div class="arch-icon">3</div>
+        <strong style="display:block;font-size:0.95rem;margin-bottom:4px;">LSTM Layer</strong>
+        <span style="font-size:0.8rem;color:var(--text-subtle);">128 Hidden Recurrent Units</span>
+      </div>
+      <div class="arch-arrow">➔</div>
+
+      <div class="arch-step">
+        <div class="arch-icon">4</div>
+        <strong style="display:block;font-size:0.95rem;margin-bottom:4px;">Softmax Dense</strong>
+        <span style="font-size:0.8rem;color:var(--text-subtle);">Probability Distribution</span>
+      </div>
+    </div>
+
+    <!-- Aligned 2x2 Grid of Technical Detail Cards -->
+    <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr; gap: 24px;">
+      
+      <!-- Card 1: Tokenization & Sequence Generation -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <span>1. Sequence Tokenization</span>
+          <span class="mode-badge" style="background:rgba(99,102,241,0.15);color:#a5b4fc;">Preprocessing</span>
+        </div>
+        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.6;margin-bottom:14px;">
+          Input text sentences are split into individual tokens and mapped to integer indices based on the vocabulary index dictionary.
+        </p>
+        <div style="background:rgba(10,15,26,0.8);padding:14px;border-radius:10px;border:1px solid var(--border-color);font-family:var(--font-code);font-size:0.82rem;color:#a5b4fc;">
+          "I am learning Python"<br>
+          ➔ [12, 4, 89, 45]<br>
+          ➔ Sequences: [[12, 4], [12, 4, 89], [12, 4, 89, 45]]
+        </div>
+      </div>
+
+      <!-- Card 2: Dense Embedding Space -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <span>2. Word Embedding Matrix</span>
+          <span class="mode-badge" style="background:rgba(16,185,129,0.15);color:#34d399;">Representation</span>
+        </div>
+        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.6;margin-bottom:14px;">
+          Each discrete word index is converted into a 128-dimensional continuous vector space representation that captures semantic relations.
+        </p>
+        <div style="background:rgba(10,15,26,0.8);padding:14px;border-radius:10px;border:1px solid var(--border-color);font-family:var(--font-code);font-size:0.82rem;color:#34d399;">
+          Embedding Dimension: 128<br>
+          Input Shape: (Batch_Size, Sequence_Length)<br>
+          Output Shape: (Batch_Size, Sequence_Length, 128)
+        </div>
+      </div>
+
+      <!-- Card 3: LSTM Memory Cells -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <span>3. LSTM Recurrent Cell</span>
+          <span class="mode-badge" style="background:rgba(236,72,153,0.15);color:#f472b6;">Recurrence</span>
+        </div>
+        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.6;margin-bottom:14px;">
+          Long Short-Term Memory cells use forget gates, input gates, and cell states to store long-term sequence dependencies without vanishing gradients.
+        </p>
+        <div style="background:rgba(10,15,26,0.8);padding:14px;border-radius:10px;border:1px solid var(--border-color);font-family:var(--font-code);font-size:0.82rem;color:#f472b6;">
+          f_t = σ(W_f · [h_{t-1}, x_t] + b_f)<br>
+          i_t = σ(W_i · [h_{t-1}, x_t] + b_i)<br>
+          C_t = f_t * C_{t-1} + i_t * C~_t
+        </div>
+      </div>
+
+      <!-- Card 4: Softmax Classification -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <span>4. Softmax Output Layer</span>
+          <span class="mode-badge" style="background:rgba(6,182,212,0.15);color:#22d3ee;">Probability</span>
+        </div>
+        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.6;margin-bottom:14px;">
+          The final dense layer applies the Softmax activation function over the entire vocabulary dimension, converting logits into normalized probabilities summing to 1.
+        </p>
+        <div style="background:rgba(10,15,26,0.8);padding:14px;border-radius:10px;border:1px solid var(--border-color);font-family:var(--font-code);font-size:0.82rem;color:#22d3ee;">
+          P(y = w_i | x) = exp(z_i) / Σ exp(z_j)<br>
+          Output Vector Dimension: Vocab_Size (N)<br>
+          Ranked using Top-K Beam Search
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    NextWord AI · Bilingual Neural Next-Word Predictor Engine
+  </footer>
+
+</body>
+</html>

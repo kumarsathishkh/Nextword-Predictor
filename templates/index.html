@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextWord AI — Bilingual Neural Next-Word Predictor</title>
+  <meta name="description" content="State-of-the-art LSTM Deep Learning engine for English & Tamil text prediction and auto-completion.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header>
+    <a class="brand" href="/">
+      <div class="logo-icon">✨</div>
+      NextWord <span>AI</span>
+    </a>
+    <nav>
+      <a href="/" class="active">Predict</a>
+      <a href="/analytics">Analytics</a>
+      <a href="/lab">Neural Lab</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="hero-header">
+      <div class="badge-tag">
+        <span class="dot"></span> Deep Learning · LSTM & Softmax · English & Tamil
+      </div>
+      <h1 class="hero-title">
+        Next-Word Prediction,<br><span>Powered by Neural Intelligence.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Type a sentence in English or Tamil to receive real-time neural probability rankings and auto-complete multi-word continuations.
+      </p>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Left Column: Input Box & Controls -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <span>Input Sequence</span>
+          <small>Press 1, 2, or 3 to insert prediction</small>
+        </div>
+
+        <div class="form-group">
+          <label for="language">Target Language</label>
+          <select id="language">
+            <option value="english">🇬🇧 English (LSTM Model)</option>
+            <option value="tamil">🇮🇳 Tamil / தமிழ் (LSTM Model)</option>
+          </select>
+        </div>
+
+        <div class="sample-pills">
+          <span class="pill" data-lang="english" data-text="I am learning">I am learning</span>
+          <span class="pill" data-lang="english" data-text="Python is useful for">Python is useful for</span>
+          <span class="pill" data-lang="english" data-text="Machine learning helps">Machine learning helps</span>
+          <span class="pill" data-lang="tamil" data-text="நான் ஒரு">நான் ஒரு</span>
+          <span class="pill" data-lang="tamil" data-text="நான் தரவு">நான் தரவு</span>
+        </div>
+
+        <div class="form-group">
+          <label for="prompt">Type phrase or context</label>
+          <textarea id="prompt" rows="3" placeholder="e.g. I am learning machine..."></textarea>
+        </div>
+
+        <div class="control-row">
+          <div class="range-wrap">
+            <label for="seqLength">Auto-Complete Words: <strong id="seqVal" style="color:#818cf8;">1</strong></label>
+            <input type="range" id="seqLength" min="1" max="5" value="1">
+          </div>
+
+          <button id="predict" class="btn" type="button">
+            ⚡ Predict Next Word
+          </button>
+          <button id="clear" class="btn btn-secondary" type="button">Clear</button>
+        </div>
+
+        <div class="status-bar" id="status">
+          <span>Ready for input</span>
+        </div>
+
+        <!-- Sequence Output Box -->
+        <div id="sequenceBox" class="sequence-box" style="display: none;">
+          <h4>Multi-Word Auto-Completion</h4>
+          <p id="sequenceText" class="sequence-text"></p>
+        </div>
+      </div>
+
+      <!-- Right Column: Predictions & Probability meter -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <span>Neural Probability Ranking</span>
+          <button id="addSentenceBtn" class="btn btn-secondary" style="font-size:0.75rem;padding:4px 10px;" type="button">+ Add Sentence</button>
+        </div>
+
+        <div id="suggestions" class="predictions-list">
+          <p style="color:var(--text-subtle);font-size:0.9rem;">Start typing above to see neural predictions...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add Sentence Modal -->
+  <div id="addModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 style="margin-bottom:12px;font-size:1.2rem;">Add Custom Sentence to Corpus</h3>
+      <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:16px;">
+        Expand the dataset with your own text, then trigger retraining to update the LSTM weights.
+      </p>
+      <form id="sentenceForm">
+        <div class="form-group">
+          <label for="modalLang">Language</label>
+          <select id="modalLang">
+            <option value="english">English</option>
+            <option value="tamil">Tamil</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="newSentenceInput">Sentence Text</label>
+          <input type="text" id="newSentenceInput" placeholder="e.g. Artificial intelligence powers modern apps" required>
+        </div>
+        <div class="control-row" style="justify-content:flex-end;">
+          <button type="button" id="closeModal" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn">Save Sentence</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div style="margin-bottom:8px;">
+      NextWord AI · Bilingual Neural Next-Word Predictor Engine
+    </div>
+    <div>
+      <button id="retrainBtn" class="btn btn-secondary" style="font-size:0.78rem;padding:6px 12px;">⚡ Retrain Neural Models</button>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

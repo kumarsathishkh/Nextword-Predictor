@@ -1,0 +1,11 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.ipynb_checkpoints/
+model/*.keras
+model/*_tokenizer.json
+model/*_maxlen.json
+results/*.csv
+.DS_Store

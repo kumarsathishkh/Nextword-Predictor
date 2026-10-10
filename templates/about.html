@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — NextWord AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header>
+    <a class="brand" href="/">
+      <div class="logo-icon">✨</div>
+      NextWord <span>AI</span>
+    </a>
+    <nav>
+      <a href="/">Predict</a>
+      <a href="/analytics">Analytics</a>
+      <a href="/lab">Neural Lab</a>
+      <a href="/about" class="active">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="hero-header" style="margin-bottom:36px;">
+      <div class="badge-tag">
+        <span class="dot"></span> NLP · LSTM Networks · Flask & TensorFlow
+      </div>
+      <h1 class="hero-title">About <span>NextWord AI</span></h1>
+      <p class="hero-subtitle">
+        An advanced bilingual deep learning system for real-time text completion in English and Tamil.
+      </p>
+    </div>
+
+    <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr; gap:24px;">
+      
+      <div class="glass-panel">
+        <h3 style="font-size:1.15rem;margin-bottom:14px;color:#fff;">🎯 Core Objectives</h3>
+        <p style="color:var(--text-muted);line-height:1.7;font-size:0.92rem;margin-bottom:14px;">
+          NextWord AI demonstrates how recurrent neural networks (RNNs) with Long Short-Term Memory (LSTM) cells process sequence dynamics to infer subsequent words.
+        </p>
+        <ul style="color:var(--text-muted);font-size:0.9rem;line-height:1.8;padding-left:20px;">
+          <li>Real-time debounced sequence auto-completion</li>
+          <li>Dual-language support (English & Tamil)</li>
+          <li>Top-K Softmax probability rankings</li>
+          <li>Multi-word recursive sequence generation</li>
+        </ul>
+      </div>
+
+      <div class="glass-panel">
+        <h3 style="font-size:1.15rem;margin-bottom:14px;color:#fff;">⚙️ Technology Stack</h3>
+        <p style="color:var(--text-muted);line-height:1.7;font-size:0.92rem;margin-bottom:14px;">
+          Built with lightweight, high-performance modern web & machine learning tooling:
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="pill">Python 3.13</span>
+          <span class="pill">TensorFlow 2.21</span>
+          <span class="pill">Keras LSTM</span>
+          <span class="pill">Flask REST API</span>
+          <span class="pill">Vanilla CSS Glassmorphism</span>
+          <span class="pill">Bilingual Corpora</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    NextWord AI · Bilingual Neural Next-Word Predictor Engine
+  </footer>
+
+</body>
+</html>

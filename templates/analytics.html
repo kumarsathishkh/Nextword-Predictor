@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Analytics & Benchmarks — NextWord AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header>
+    <a class="brand" href="/">
+      <div class="logo-icon">✨</div>
+      NextWord <span>AI</span>
+    </a>
+    <nav>
+      <a href="/">Predict</a>
+      <a href="/analytics" class="active">Analytics</a>
+      <a href="/lab">Neural Lab</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="hero-header" style="margin-bottom:32px;">
+      <div class="badge-tag">
+        <span class="dot"></span> Empirical Performance & Dataset Metrics
+      </div>
+      <h1 class="hero-title">Model Performance <span>Analytics</span></h1>
+      <p class="hero-subtitle">
+        Real-time statistical evaluation, vocabulary distribution, and top-k accuracy benchmark metrics.
+      </p>
+    </div>
+
+    <!-- Stats Summary Row -->
+    <div class="stat-grid" id="statsGrid">
+      <div class="stat-card">
+        <div class="num" id="enSentences">--</div>
+        <div class="label">English Corpus Sentences</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="enVocab">--</div>
+        <div class="label">English Unique Words</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="taSentences">--</div>
+        <div class="label">Tamil Corpus Sentences</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="taVocab">--</div>
+        <div class="label">Tamil Unique Words</div>
+      </div>
+    </div>
+
+    <!-- Comparative Grid Section with Perfect Alignment -->
+    <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 24px;">
+      
+      <!-- English Model Benchmark Card -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <span>🇬🇧 English Model Benchmark</span>
+          <span class="mode-badge" style="background:rgba(99,102,241,0.2);color:#a5b4fc;">LSTM v2.0</span>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.9rem;">
+            <span>Top-1 Exact Word Accuracy</span>
+            <strong id="enTop1Val" style="color:#10b981;">--%</strong>
+          </div>
+          <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;">
+            <div id="enTop1Bar" style="height:100%;width:0%;background:linear-gradient(90deg,#10b981,#34d399);transition:width 0.8s ease;"></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.9rem;">
+            <span>Top-3 Top Hit Rate</span>
+            <strong id="enTop3Val" style="color:#6366f1;">--%</strong>
+          </div>
+          <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;">
+            <div id="enTop3Bar" style="height:100%;width:0%;background:linear-gradient(90deg,#6366f1,#818cf8);transition:width 0.8s ease;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;padding:14px;background:rgba(10,15,26,0.6);border-radius:12px;border:1px solid var(--border-color);font-size:0.85rem;color:var(--text-muted);line-height:1.6;">
+          <strong style="color:#fff;">Model Specs:</strong> 128-dim Embedding layer, 128 LSTM units with Dropout (0.2), Adam optimizer, Categorical Crossentropy loss.
+        </div>
+      </div>
+
+      <!-- Tamil Model Benchmark Card -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <span>🇮🇳 Tamil Model Benchmark</span>
+          <span class="mode-badge" style="background:rgba(236,72,153,0.2);color:#f472b6;">LSTM v2.0</span>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.9rem;">
+            <span>Top-1 Exact Word Accuracy</span>
+            <strong id="taTop1Val" style="color:#10b981;">--%</strong>
+          </div>
+          <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;">
+            <div id="taTop1Bar" style="height:100%;width:0%;background:linear-gradient(90deg,#10b981,#34d399);transition:width 0.8s ease;"></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.9rem;">
+            <span>Top-3 Top Hit Rate</span>
+            <strong id="taTop3Val" style="color:#ec4899;">--%</strong>
+          </div>
+          <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;">
+            <div id="taTop3Bar" style="height:100%;width:0%;background:linear-gradient(90deg,#ec4899,#f472b6);transition:width 0.8s ease;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;padding:14px;background:rgba(10,15,26,0.6);border-radius:12px;border:1px solid var(--border-color);font-size:0.85rem;color:var(--text-muted);line-height:1.6;">
+          <strong style="color:#fff;">Model Specs:</strong> 128-dim Embedding layer, 128 LSTM units with Dropout (0.2), Adam optimizer, Categorical Crossentropy loss.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live Evaluation Trigger Panel -->
+    <div class="glass-panel" style="text-align:center;padding:32px;">
+      <h3 style="font-size:1.25rem;margin-bottom:10px;">Run Live Accuracy Benchmark</h3>
+      <p style="color:var(--text-muted);max-width:560px;margin:0 auto 20px;font-size:0.95rem;">
+        Click below to run a real-time evaluation across held-out target words in the dataset and update the accuracy meters.
+      </p>
+      <button id="runEvalBtn" class="btn" type="button">
+        ⚡ Run Evaluation Suite
+      </button>
+      <p id="evalStatus" style="margin-top:12px;font-size:0.88rem;color:var(--text-muted);"></p>
+    </div>
+
+  </main>
+
+  <footer>
+    NextWord AI · Bilingual Neural Next-Word Predictor Engine
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const runEvalBtn = document.getElementById("runEvalBtn");
+      const evalStatus = document.getElementById("evalStatus");
+
+      // Load initial dataset stats
+      try {
+        const res = await fetch("/api/stats");
+        const data = await res.json();
+        if (data.stats) {
+          document.getElementById("enSentences").textContent = data.stats.english.total_sentences;
+          document.getElementById("enVocab").textContent = data.stats.english.vocab_size;
+          document.getElementById("taSentences").textContent = data.stats.tamil.total_sentences;
+          document.getElementById("taVocab").textContent = data.stats.tamil.vocab_size;
+        }
+      } catch(e) {}
+
+      // Trigger Evaluation
+      async function runEvaluation() {
+        runEvalBtn.disabled = true;
+        evalStatus.textContent = "Running benchmark evaluation suite...";
+
+        try {
+          const res = await fetch("/api/evaluate", { method: "POST" });
+          const data = await res.json();
+          const evalData = data.evaluation;
+
+          if (evalData.english) {
+            document.getElementById("enTop1Val").textContent = evalData.english.top1_accuracy + "%";
+            document.getElementById("enTop1Bar").style.width = evalData.english.top1_accuracy + "%";
+            document.getElementById("enTop3Val").textContent = evalData.english.top3_accuracy + "%";
+            document.getElementById("enTop3Bar").style.width = evalData.english.top3_accuracy + "%";
+          }
+
+          if (evalData.tamil) {
+            document.getElementById("taTop1Val").textContent = evalData.tamil.top1_accuracy + "%";
+            document.getElementById("taTop1Bar").style.width = evalData.tamil.top1_accuracy + "%";
+            document.getElementById("taTop3Val").textContent = evalData.tamil.top3_accuracy + "%";
+            document.getElementById("taTop3Bar").style.width = evalData.tamil.top3_accuracy + "%";
+          }
+
+          evalStatus.textContent = "✅ Evaluation completed successfully!";
+        } catch(err) {
+          evalStatus.textContent = "Failed to run evaluation.";
+        } finally {
+          runEvalBtn.disabled = false;
+        }
+      }
+
+      runEvalBtn.addEventListener("click", runEvaluation);
+      runEvaluation();
+    });
+  </script>
+</body>
+</html>
